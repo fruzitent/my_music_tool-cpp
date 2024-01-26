@@ -1,0 +1,51 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "configuration": "Debug",
+      "configurePreset": "windows-msvc-debug",
+      "inherits": ["build_base-windows-msvc"],
+      "name": "windows-msvc-debug"
+    }
+  ],
+  "configurePresets": [
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl"
+      },
+      "inherits": ["configure_base-windows-msvc"],
+      "name": "windows-msvc-debug"
+    }
+  ],
+  "include": ["./_base.json"],
+  "packagePresets": [
+    {
+      "configurations": ["Debug"],
+      "configurePreset": "windows-msvc-debug",
+      "inherits": ["package_base-windows-msvc"],
+      "name": "windows-msvc-debug"
+    }
+  ],
+  "testPresets": [
+    {
+      "configuration": "Debug",
+      "configurePreset": "windows-msvc-debug",
+      "inherits": ["test_base-windows-msvc"],
+      "name": "windows-msvc-debug"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "windows-msvc-debug",
+      "steps": [
+        { "name": "windows-msvc-debug", "type": "configure" },
+        { "name": "windows-msvc-debug", "type": "build" },
+        { "name": "windows-msvc-debug", "type": "test" },
+        { "name": "windows-msvc-debug", "type": "package" }
+      ]
+    }
+  ]
+}
