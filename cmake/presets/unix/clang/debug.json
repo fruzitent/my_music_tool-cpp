@@ -1,0 +1,51 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "configuration": "Debug",
+      "configurePreset": "unix-clang-debug",
+      "inherits": ["build_base-unix-clang"],
+      "name": "unix-clang-debug"
+    }
+  ],
+  "configurePresets": [
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      },
+      "inherits": ["configure_base-unix-clang"],
+      "name": "unix-clang-debug"
+    }
+  ],
+  "include": ["./_base.json"],
+  "packagePresets": [
+    {
+      "configurations": ["Debug"],
+      "configurePreset": "unix-clang-debug",
+      "inherits": ["package_base-unix-clang"],
+      "name": "unix-clang-debug"
+    }
+  ],
+  "testPresets": [
+    {
+      "configuration": "Debug",
+      "configurePreset": "unix-clang-debug",
+      "inherits": ["test_base-unix-clang"],
+      "name": "unix-clang-debug"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "unix-clang-debug",
+      "steps": [
+        { "name": "unix-clang-debug", "type": "configure" },
+        { "name": "unix-clang-debug", "type": "build" },
+        { "name": "unix-clang-debug", "type": "test" },
+        { "name": "unix-clang-debug", "type": "package" }
+      ]
+    }
+  ]
+}
