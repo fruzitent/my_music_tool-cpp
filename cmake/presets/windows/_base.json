@@ -1,0 +1,54 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "condition": {
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows",
+        "type": "equals"
+      },
+      "hidden": true,
+      "inherits": ["build_base"],
+      "name": "build_base-windows"
+    }
+  ],
+  "configurePresets": [
+    {
+      "condition": {
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows",
+        "type": "equals"
+      },
+      "hidden": true,
+      "inherits": ["configure_base"],
+      "name": "configure_base-windows"
+    }
+  ],
+  "include": ["../_base.json"],
+  "packagePresets": [
+    {
+      "condition": {
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows",
+        "type": "equals"
+      },
+      "hidden": true,
+      "inherits": ["package_base"],
+      "name": "package_base-windows"
+    }
+  ],
+  "testPresets": [
+    {
+      "condition": {
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows",
+        "type": "equals"
+      },
+      "hidden": true,
+      "inherits": ["test_base"],
+      "name": "test_base-windows"
+    }
+  ],
+  "workflowPresets": []
+}
