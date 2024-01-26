@@ -1,0 +1,51 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "configuration": "Release",
+      "configurePreset": "windows-clang-release",
+      "inherits": ["build_base-windows-clang"],
+      "name": "windows-clang-release"
+    }
+  ],
+  "configurePresets": [
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      },
+      "inherits": ["configure_base-windows-clang"],
+      "name": "windows-clang-release"
+    }
+  ],
+  "include": ["./_base.json"],
+  "packagePresets": [
+    {
+      "configurations": ["Release"],
+      "configurePreset": "windows-clang-release",
+      "inherits": ["package_base-windows-clang"],
+      "name": "windows-clang-release"
+    }
+  ],
+  "testPresets": [
+    {
+      "configuration": "Release",
+      "configurePreset": "windows-clang-release",
+      "inherits": ["test_base-windows-clang"],
+      "name": "windows-clang-release"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "windows-clang-release",
+      "steps": [
+        { "name": "windows-clang-release", "type": "configure" },
+        { "name": "windows-clang-release", "type": "build" },
+        { "name": "windows-clang-release", "type": "test" },
+        { "name": "windows-clang-release", "type": "package" }
+      ]
+    }
+  ]
+}
