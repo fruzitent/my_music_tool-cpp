@@ -1,0 +1,34 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "hidden": true,
+      "inherits": ["build_base"],
+      "name": "build_base-unix-gcc"
+    }
+  ],
+  "configurePresets": [
+    {
+      "hidden": true,
+      "inherits": ["configure_base"],
+      "name": "configure_base-unix-gcc"
+    }
+  ],
+  "include": ["../_base.json"],
+  "packagePresets": [
+    {
+      "hidden": true,
+      "inherits": ["package_base"],
+      "name": "package_base-unix-gcc"
+    }
+  ],
+  "testPresets": [
+    {
+      "hidden": true,
+      "inherits": ["test_base"],
+      "name": "test_base-unix-gcc"
+    }
+  ],
+  "workflowPresets": []
+}

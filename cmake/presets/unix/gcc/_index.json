@@ -3,7 +3,7 @@
   "version": 8,
   "buildPresets": [],
   "configurePresets": [],
-  "include": ["./clang/_index.json", "./gcc/_index.json"],
+  "include": [],
   "packagePresets": [],
   "testPresets": [],
   "workflowPresets": []
