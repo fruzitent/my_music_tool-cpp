@@ -1,0 +1,51 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "configuration": "Debug",
+      "configurePreset": "windows-clang-debug",
+      "inherits": ["build_base-windows-clang"],
+      "name": "windows-clang-debug"
+    }
+  ],
+  "configurePresets": [
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      },
+      "inherits": ["configure_base-windows-clang"],
+      "name": "windows-clang-debug"
+    }
+  ],
+  "include": ["./_base.json"],
+  "packagePresets": [
+    {
+      "configurations": ["Debug"],
+      "configurePreset": "windows-clang-debug",
+      "inherits": ["package_base-windows-clang"],
+      "name": "windows-clang-debug"
+    }
+  ],
+  "testPresets": [
+    {
+      "configuration": "Debug",
+      "configurePreset": "windows-clang-debug",
+      "inherits": ["test_base-windows-clang"],
+      "name": "windows-clang-debug"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "windows-clang-debug",
+      "steps": [
+        { "name": "windows-clang-debug", "type": "configure" },
+        { "name": "windows-clang-debug", "type": "build" },
+        { "name": "windows-clang-debug", "type": "test" },
+        { "name": "windows-clang-debug", "type": "package" }
+      ]
+    }
+  ]
+}
