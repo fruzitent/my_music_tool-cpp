@@ -4,14 +4,14 @@
   "buildPresets": [
     {
       "hidden": true,
-      "inherits": ["build_base"],
+      "inherits": ["build_base-unix"],
       "name": "build_base-unix-gcc"
     }
   ],
   "configurePresets": [
     {
       "hidden": true,
-      "inherits": ["configure_base"],
+      "inherits": ["configure_base-unix"],
       "name": "configure_base-unix-gcc"
     }
   ],
@@ -19,14 +19,14 @@
   "packagePresets": [
     {
       "hidden": true,
-      "inherits": ["package_base"],
+      "inherits": ["package_base-unix"],
       "name": "package_base-unix-gcc"
     }
   ],
   "testPresets": [
     {
       "hidden": true,
-      "inherits": ["test_base"],
+      "inherits": ["test_base-unix"],
       "name": "test_base-unix-gcc"
     }
   ],

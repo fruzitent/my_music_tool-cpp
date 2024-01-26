@@ -4,7 +4,7 @@
   "buildPresets": [
     {
       "hidden": true,
-      "inherits": ["build_base"],
+      "inherits": ["build_base-windows"],
       "name": "build_base-windows-msvc"
     }
   ],
@@ -12,7 +12,7 @@
     {
       "generator": "Ninja",
       "hidden": true,
-      "inherits": ["configure_base"],
+      "inherits": ["configure_base-windows"],
       "name": "configure_base-windows-msvc"
     }
   ],
@@ -20,14 +20,14 @@
   "packagePresets": [
     {
       "hidden": true,
-      "inherits": ["package_base"],
+      "inherits": ["package_base-windows"],
       "name": "package_base-windows-msvc"
     }
   ],
   "testPresets": [
     {
       "hidden": true,
-      "inherits": ["test_base"],
+      "inherits": ["test_base-windows"],
       "name": "test_base-windows-msvc"
     }
   ],
