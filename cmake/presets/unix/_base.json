@@ -1,0 +1,54 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "condition": {
+        "list": ["Darwin", "Linux"],
+        "string": "${hostSystemName}",
+        "type": "inList"
+      },
+      "hidden": true,
+      "inherits": ["build_base"],
+      "name": "build_base-unix"
+    }
+  ],
+  "configurePresets": [
+    {
+      "condition": {
+        "list": ["Darwin", "Linux"],
+        "string": "${hostSystemName}",
+        "type": "inList"
+      },
+      "hidden": true,
+      "inherits": ["configure_base"],
+      "name": "configure_base-unix"
+    }
+  ],
+  "include": ["../_base.json"],
+  "packagePresets": [
+    {
+      "condition": {
+        "list": ["Darwin", "Linux"],
+        "string": "${hostSystemName}",
+        "type": "inList"
+      },
+      "hidden": true,
+      "inherits": ["package_base"],
+      "name": "package_base-unix"
+    }
+  ],
+  "testPresets": [
+    {
+      "condition": {
+        "list": ["Darwin", "Linux"],
+        "string": "${hostSystemName}",
+        "type": "inList"
+      },
+      "hidden": true,
+      "inherits": ["test_base"],
+      "name": "test_base-unix"
+    }
+  ],
+  "workflowPresets": []
+}
