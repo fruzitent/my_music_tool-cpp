@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/clangd.json
+# @help: https://clangd.llvm.org/config.html
+
+CompileFlags:
+  CompilationDatabase: "@CMAKE_BINARY_DIR@"

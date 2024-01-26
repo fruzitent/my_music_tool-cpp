@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=
+# @help: https://clang.llvm.org/extra/clang-tidy/checks/list.html
+
+Checks: "*,
+  -abseil-*,
+  -altera-*,
+  -android-*,
+  -fuchsia-*,
+  -google-*,
+  -llvm*,
+  -zircon-*,
+  -*-non-private-member-variables-in-classes,
+  "
+
+CheckOptions:
+  - key: readability-identifier-length.IgnoredParameterNames
+    value: "is|os|x|y|z"
+  - key: readability-identifier-length.IgnoredVariableNames
+    value: "is|os|x|y|z"
