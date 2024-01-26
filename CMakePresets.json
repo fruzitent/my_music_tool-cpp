@@ -1,0 +1,10 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [],
+  "configurePresets": [],
+  "include": ["./cmake/presets/_index.json"],
+  "packagePresets": [],
+  "testPresets": [],
+  "workflowPresets": []
+}

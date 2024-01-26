@@ -1,0 +1,41 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "hidden": true,
+      "name": "build_base"
+    }
+  ],
+  "configurePresets": [
+    {
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "hidden": true,
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "name": "configure_base"
+    }
+  ],
+  "include": [],
+  "packagePresets": [
+    {
+      "generators": ["TGZ"],
+      "hidden": true,
+      "name": "package_base"
+    }
+  ],
+  "testPresets": [
+    {
+      "execution": {
+        "noTestsAction": "default",
+        "scheduleRandom": true,
+        "stopOnFailure": true
+      },
+      "hidden": true,
+      "name": "test_base",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ],
+  "workflowPresets": []
+}
