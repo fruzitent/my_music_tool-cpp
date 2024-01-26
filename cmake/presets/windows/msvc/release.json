@@ -1,0 +1,51 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "configuration": "Release",
+      "configurePreset": "windows-msvc-release",
+      "inherits": ["build_base-windows-msvc"],
+      "name": "windows-msvc-release"
+    }
+  ],
+  "configurePresets": [
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl"
+      },
+      "inherits": ["configure_base-windows-msvc"],
+      "name": "windows-msvc-release"
+    }
+  ],
+  "include": ["./_base.json"],
+  "packagePresets": [
+    {
+      "configurations": ["Release"],
+      "configurePreset": "windows-msvc-release",
+      "inherits": ["package_base-windows-msvc"],
+      "name": "windows-msvc-release"
+    }
+  ],
+  "testPresets": [
+    {
+      "configuration": "Release",
+      "configurePreset": "windows-msvc-release",
+      "inherits": ["test_base-windows-msvc"],
+      "name": "windows-msvc-release"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "windows-msvc-release",
+      "steps": [
+        { "name": "windows-msvc-release", "type": "configure" },
+        { "name": "windows-msvc-release", "type": "build" },
+        { "name": "windows-msvc-release", "type": "test" },
+        { "name": "windows-msvc-release", "type": "package" }
+      ]
+    }
+  ]
+}
