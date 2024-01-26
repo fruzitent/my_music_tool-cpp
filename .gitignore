@@ -1,4 +1,8 @@
 # @help: https://git-scm.com/docs/gitignore
 
+*venv/
+*.egg-info/
+build/
+
 out/
 .clangd

@@ -1,0 +1,23 @@
+#:schema https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/pyproject.json
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=69.0.3"]
+
+[project]
+authors = [{ email = "fruzit@gmail.com", name = "fruzitent" }]
+dependencies = []
+description = "my_music_tool-cpp"
+license.file = "license.md"
+name = "my_music_tool-cpp"
+readme = "readme.md"
+requires-python = ">=3.6"
+version = "0.1.0"
+
+[project.optional-dependencies]
+dev = ["gersemi>=0.11.0"]
+
+[project.scripts]
+
+[project.urls]
+repository = "https://github.com/fruzitent/my_music_tool-cpp.git"
