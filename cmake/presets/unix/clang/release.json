@@ -1,0 +1,51 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "configuration": "Release",
+      "configurePreset": "unix-clang-release",
+      "inherits": ["build_base-unix-clang"],
+      "name": "unix-clang-release"
+    }
+  ],
+  "configurePresets": [
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      },
+      "inherits": ["configure_base-unix-clang"],
+      "name": "unix-clang-release"
+    }
+  ],
+  "include": ["./_base.json"],
+  "packagePresets": [
+    {
+      "configurations": ["Release"],
+      "configurePreset": "unix-clang-release",
+      "inherits": ["package_base-unix-clang"],
+      "name": "unix-clang-release"
+    }
+  ],
+  "testPresets": [
+    {
+      "configuration": "Release",
+      "configurePreset": "unix-clang-release",
+      "inherits": ["test_base-unix-clang"],
+      "name": "unix-clang-release"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "unix-clang-release",
+      "steps": [
+        { "name": "unix-clang-release", "type": "configure" },
+        { "name": "unix-clang-release", "type": "build" },
+        { "name": "unix-clang-release", "type": "test" },
+        { "name": "unix-clang-release", "type": "package" }
+      ]
+    }
+  ]
+}
