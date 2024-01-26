@@ -20,3 +20,4 @@ project(
 )
 
 add_subdirectory(./configured_files/)
+add_subdirectory(./src/)
