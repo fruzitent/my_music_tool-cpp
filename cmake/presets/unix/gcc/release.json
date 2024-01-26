@@ -1,0 +1,51 @@
+{
+  "$schema": "https://gitlab.kitware.com/cmake/cmake/-/raw/master/Help/manual/presets/schema.json",
+  "version": 8,
+  "buildPresets": [
+    {
+      "configuration": "Release",
+      "configurePreset": "unix-gcc-release",
+      "inherits": ["build_base-unix-gcc"],
+      "name": "unix-gcc-release"
+    }
+  ],
+  "configurePresets": [
+    {
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
+      },
+      "inherits": ["configure_base-unix-gcc"],
+      "name": "unix-gcc-release"
+    }
+  ],
+  "include": ["./_base.json"],
+  "packagePresets": [
+    {
+      "configurations": ["Release"],
+      "configurePreset": "unix-gcc-release",
+      "inherits": ["package_base-unix-gcc"],
+      "name": "unix-gcc-release"
+    }
+  ],
+  "testPresets": [
+    {
+      "configuration": "Release",
+      "configurePreset": "unix-gcc-release",
+      "inherits": ["test_base-unix-gcc"],
+      "name": "unix-gcc-release"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "unix-gcc-release",
+      "steps": [
+        { "name": "unix-gcc-release", "type": "configure" },
+        { "name": "unix-gcc-release", "type": "build" },
+        { "name": "unix-gcc-release", "type": "test" },
+        { "name": "unix-gcc-release", "type": "package" }
+      ]
+    }
+  ]
+}
