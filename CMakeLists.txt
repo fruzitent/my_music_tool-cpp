@@ -19,5 +19,6 @@ project(
         CXX
 )
 
+add_subdirectory(./cmake/)
 add_subdirectory(./configured_files/)
 add_subdirectory(./src/)
