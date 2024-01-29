@@ -10,7 +10,6 @@
   ],
   "configurePresets": [
     {
-      "generator": "Ninja",
       "hidden": true,
       "inherits": ["configure_base-windows"],
       "name": "configure_base-windows-msvc"
