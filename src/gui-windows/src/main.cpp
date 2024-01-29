@@ -1,20 +1,7 @@
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-
-#ifdef GetCurrentTime
-#undef GetCurrentTime
-#endif
-
-#include <MddBootstrap.h>
-
-#include <WindowsAppSDK-VersionInfo.h>
 using Microsoft::WindowsAppSDK::Release::MajorMinor;
 using Microsoft::WindowsAppSDK::Release::VersionTag;
 using Microsoft::WindowsAppSDK::Runtime::Version::UInt64;
 
-#include <winrt/base.h>
-
-#include <winrt/Microsoft.UI.Xaml.h>
 using winrt::Microsoft::UI::Xaml::Application;
 using winrt::Microsoft::UI::Xaml::ApplicationT;
 using winrt::Microsoft::UI::Xaml::LaunchActivatedEventArgs;
