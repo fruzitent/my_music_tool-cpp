@@ -1,11 +1,23 @@
-# https://nuget.org/packages/Microsoft.Windows.SDK.Contracts
+# https://cmake.org/cmake/help/latest/module/FetchContent.html
+include(FetchContent)
 
 set(MS_WIN_SDK_CONTRACTS "ms_win_sdk_contracts" CACHE INTERNAL "")
-set(MS_WIN_SDK_CONTRACTS_HASH "dbeba07806dacdb38a8f6e4677e2b06c52d79aeab58e0f5b38191bd41314e416" CACHE INTERNAL "")
-set(MS_WIN_SDK_CONTRACTS_ID "Microsoft.Windows.SDK.Contracts" CACHE INTERNAL "")
-set(MS_WIN_SDK_CONTRACTS_VERSION "10.0.22621.2428" CACHE INTERNAL "")
+set(target ${MS_WIN_SDK_CONTRACTS})
 
-nuget_install(${MS_WIN_SDK_CONTRACTS} ${MS_WIN_SDK_CONTRACTS_ID} ${MS_WIN_SDK_CONTRACTS_VERSION} ${MS_WIN_SDK_CONTRACTS_HASH})
+set(${target}_HASH "SHA256=DBEBA07806DACDB38A8F6E4677E2B06C52D79AEAB58E0F5B38191BD41314E416" CACHE INTERNAL "")
+set(${target}_VERSION "10.0.22621.2428" CACHE INTERNAL "")
 
-add_library(${MS_WIN_SDK_CONTRACTS} INTERFACE)
-add_library(deps::${MS_WIN_SDK_CONTRACTS} ALIAS ${MS_WIN_SDK_CONTRACTS})
+# https://nuget.org/packages/Microsoft.Windows.SDK.Contracts
+fetchcontent_declare(
+    ${target}
+    URL
+        "https://nuget.org/api/v2/package/Microsoft.Windows.SDK.Contracts/${${target}_VERSION}"
+    URL_HASH ${${target}_HASH}
+)
+fetchcontent_makeavailable(${target})
+
+set(${target}_BINARY_DIR ${${target}_BINARY_DIR} CACHE INTERNAL "")
+set(${target}_SOURCE_DIR ${${target}_SOURCE_DIR} CACHE INTERNAL "")
+
+add_library(${target} INTERFACE)
+add_library(deps::${target} ALIAS ${target})
