@@ -7,6 +7,8 @@ FROM docker.io/library/ubuntu:24.04 as base
 ARG WORKDIR
 WORKDIR ${WORKDIR}
 
+ARG DEBIAN_FRONTEND="noninteractive"
+
 # @see: https://github.com/moby/buildkit/blob/master/frontend/dockerfile/docs/reference.md#run---mounttypecache
 RUN <<EOF
     rm -rf "/etc/apt/apt.conf.d/docker-clean"
@@ -73,3 +75,5 @@ WORKDIR ${WORKDIR}
 
 COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/src/cli/src/cli"           "/usr/local/bin/my_music_tool-cli"
 COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/src/gui-unix/src/gui-unix" "/usr/local/bin/my_music_tool-gui"
+
+CMD ["/usr/local/bin/my_music_tool-cli"]
