@@ -1,3 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+# @help: https://docs.docker.com/compose/compose-file
+
+name: my_music_tool
+
 services:
   cpp:
     build:
@@ -9,8 +14,13 @@ services:
       target: deps
     image: ghcr.io/fruzitent/my_music_tool-cpp:latest
     pull_policy: if_not_present
+    restart: always
     volumes:
-      - cpp_data:/workspaces/
+      - type: volume
+        source: cpp_data
+        target: /workspaces/
+        volume:
+          nocopy: true
 
 volumes:
   cpp_data:
