@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1.6-labs
+# @help: https://docs.docker.com/reference/dockerfile
 
 ARG WORKDIR="/workspaces/my_music_tool-cpp/"
 
@@ -34,6 +35,15 @@ RUN --mount=type=cache,target=/var/cache/apt/,sharing=locked --mount=type=cache,
     update-alternatives --install "/usr/local/bin/gcc"     gcc     "/usr/bin/gcc-14"     1
 EOF
 
+# hadolint ignore=DL3008
+RUN --mount=type=cache,target=/var/cache/apt/,sharing=locked --mount=type=cache,target=/var/lib/apt/,sharing=locked <<EOF
+    apt-get update
+    apt-get -y install --no-install-recommends \
+        "git" \
+        "neovim" \
+        ;
+EOF
+
 FROM base as deps
 
 ARG WORKDIR
@@ -67,6 +77,14 @@ COPY "./CMakePresets.json" "${WORKDIR}/"
 RUN --mount=type=cache,target=${WORKDIR}/.cache/,sharing=locked <<EOF
     cmake --workflow --preset "unix-clang-release"
 EOF
+
+# hadolint ignore=DL3006
+FROM scratch as artifact
+
+ARG WORKDIR
+
+COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/src/cli/src/cli"           "/out/build/unix-clang-release/src/cli/src/"
+COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/src/gui-unix/src/gui-unix" "/out/build/unix-clang-release/src/gui-unix/src/"
 
 FROM docker.io/library/ubuntu:24.04 as runner
 
