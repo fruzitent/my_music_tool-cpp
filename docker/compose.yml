@@ -1,0 +1,13 @@
+services:
+  cpp:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+      target: deps
+    image: ghcr.io/fruzitent/my_music_tool-cpp:latest
+    pull_policy: if_not_present
+    volumes:
+      - cpp_data:/workspaces/
+
+volumes:
+  cpp_data:
