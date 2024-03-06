@@ -8,9 +8,9 @@ services:
     build:
       context: ../
       dockerfile: ./docker/Dockerfile
-      platforms:
-        - "linux/amd64"
-        - "linux/arm64"
+      # platforms:
+      #   - "linux/amd64"
+      #   - "linux/arm64"
       target: deps
     image: ghcr.io/fruzitent/my_music_tool-cpp:latest
     pull_policy: if_not_present
