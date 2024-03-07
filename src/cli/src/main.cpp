@@ -1,6 +1,8 @@
 #include <print>
 
+#include <my_music_tool/spotify.hpp>
+
 auto main() -> int {
-    std::println("Hello, world!");
-    return 0;
+  std::println("{}", spotify::hello());
+  return 0;
 }

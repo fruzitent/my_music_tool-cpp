@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.6-labs
+# syntax=docker.io/docker/dockerfile:1.6-labs
 # @help: https://docs.docker.com/reference/dockerfile
 
 ARG WORKDIR="/workspaces/my_music_tool-cpp/"
@@ -66,6 +66,13 @@ FROM deps as builder
 
 ARG WORKDIR
 WORKDIR ${WORKDIR}
+
+# hadolint global ignore=DL3022
+COPY --from=rs "./out/include/"                 "${WORKDIR}/out/artifact/mmt_spotify/include/"
+COPY --from=rs "./target/debug/libspotify.a"    "${WORKDIR}/out/artifact/mmt_spotify/lib/debug/libspotify.a"
+COPY --from=rs "./target/debug/libspotify.so"   "${WORKDIR}/out/artifact/mmt_spotify/lib/debug/libspotify.so"
+COPY --from=rs "./target/release/libspotify.a"  "${WORKDIR}/out/artifact/mmt_spotify/lib/release/libspotify.a"
+COPY --from=rs "./target/release/libspotify.so" "${WORKDIR}/out/artifact/mmt_spotify/lib/release/libspotify.so"
 
 COPY "./cmake"            "${WORKDIR}/cmake/"
 COPY "./configured_files" "${WORKDIR}/configured_files/"

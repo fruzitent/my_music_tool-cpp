@@ -6,6 +6,8 @@ name: my_music_tool
 services:
   cpp:
     build:
+      additional_contexts:
+        rs: "../../rs/"
       context: ../
       dockerfile: ./docker/Dockerfile
       # platforms:
@@ -21,6 +23,10 @@ services:
         target: /workspaces/
         volume:
           nocopy: true
+      - type: bind
+        source: ../../rs/
+        target: /workspaces/rs/
+        read_only: true
 
 volumes:
   cpp_data:

@@ -19,6 +19,8 @@ project(
         CXX
 )
 
+option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
+
 add_subdirectory(./cmake/)
 add_subdirectory(./configured_files/)
 add_subdirectory(./src/)
