@@ -90,15 +90,13 @@ FROM scratch as artifact
 
 ARG WORKDIR
 
-COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/src/cli/src/cli"           "/out/build/unix-clang-release/src/cli/src/"
-COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/src/gui-unix/src/gui-unix" "/out/build/unix-clang-release/src/gui-unix/src/"
+COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/_CPack_Packages/Linux/TGZ/" "/out/build/unix-clang-release/_CPack_Packages/Linux/TGZ/"
 
 FROM docker.io/library/ubuntu:24.04 as runner
 
 ARG WORKDIR
 WORKDIR ${WORKDIR}
 
-COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/src/cli/src/cli"           "/usr/local/bin/my_music_tool-cli"
-COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/src/gui-unix/src/gui-unix" "/usr/local/bin/my_music_tool-gui"
+COPY --from=builder "${WORKDIR}/out/build/unix-clang-release/_CPack_Packages/Linux/TGZ/my_music_tool-cpp-0.1.0-Linux/" "/usr/local/"
 
-CMD ["/usr/local/bin/my_music_tool-cli"]
+CMD ["/usr/local/bin/cli"]

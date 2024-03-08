@@ -6,6 +6,14 @@ set(CPM_PACKAGE_${target}_SOURCE_DIR "${CMAKE_SOURCE_DIR}/out/artifact/${target}
 add_library(${target} SHARED IMPORTED GLOBAL)
 add_library(deps::${target} ALIAS ${target})
 
+target_sources(
+    ${target}
+    INTERFACE
+        FILE_SET HEADERS
+        BASE_DIRS
+            "${CPM_PACKAGE_${target}_SOURCE_DIR}/include/"
+)
+
 target_sources(${target} INTERFACE "${CPM_PACKAGE_${target}_SOURCE_DIR}/include/my_music_tool/spotify.cpp")
 
 if(BUILD_SHARED_LIBS)
@@ -23,6 +31,8 @@ set_target_properties(
             ${LIBSPOTIFY_DEBUG}
         IMPORTED_LOCATION_RELEASE
             ${LIBSPOTIFY_RELEASE}
+        IMPORTED_NO_SONAME
+            ON
 )
 
-target_include_directories(${target} INTERFACE "${CPM_PACKAGE_${target}_SOURCE_DIR}/include/")
+install(IMPORTED_RUNTIME_ARTIFACTS ${target})

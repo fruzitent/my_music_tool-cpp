@@ -3,3 +3,5 @@
 include(./cpm.cmake)
 
 add_subdirectory(./deps/)
+
+include(./cpack.cmake)

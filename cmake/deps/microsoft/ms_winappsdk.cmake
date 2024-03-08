@@ -15,17 +15,19 @@ cpmaddpackage(
 add_library(${target} SHARED IMPORTED GLOBAL)
 add_library(deps::${target} ALIAS ${target})
 
+target_sources(
+    ${target}
+    INTERFACE
+        FILE_SET HEADERS
+        BASE_DIRS
+            "${CPM_PACKAGE_${target}_SOURCE_DIR}/include/"
+)
+
 set_target_properties(
     ${target}
     PROPERTIES
-        IMPORTED_IMPLIB
-            "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/win10-x64/Microsoft.WindowsAppRuntime.Bootstrap.lib"
-        IMPORTED_IMPLIB_DEBUG
-            "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/win10-x64/Microsoft.WindowsAppRuntime.Bootstrap.lib"
-        IMPORTED_LOCATION
-            "${CPM_PACKAGE_${target}_SOURCE_DIR}/runtimes/win10-x64/native/Microsoft.WindowsAppRuntime.Bootstrap.dll"
-        IMPORTED_LOCATION_DEBUG
-            "${CPM_PACKAGE_${target}_SOURCE_DIR}/runtimes/win10-x64/native/Microsoft.WindowsAppRuntime.Bootstrap.dll"
+        IMPORTED_IMPLIB_RELEASE
+            "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/win10-x64/Microsoft.WindowsAppRuntime.Bootstrap${CMAKE_STATIC_LIBRARY_SUFFIX}"
+        IMPORTED_LOCATION_RELEASE
+            "${CPM_PACKAGE_${target}_SOURCE_DIR}/runtimes/win10-x64/native/Microsoft.WindowsAppRuntime.Bootstrap${CMAKE_SHARED_LIBRARY_SUFFIX}"
 )
-
-target_include_directories(${target} INTERFACE "${CPM_PACKAGE_${target}_SOURCE_DIR}/include/")
