@@ -26,8 +26,8 @@ target_sources(
 set_target_properties(
     ${target}
     PROPERTIES
-        IMPORTED_IMPLIB_RELEASE
+        IMPORTED_IMPLIB
             "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/win10-x64/Microsoft.WindowsAppRuntime.Bootstrap${CMAKE_STATIC_LIBRARY_SUFFIX}"
-        IMPORTED_LOCATION_RELEASE
+        IMPORTED_LOCATION
             "${CPM_PACKAGE_${target}_SOURCE_DIR}/runtimes/win10-x64/native/Microsoft.WindowsAppRuntime.Bootstrap${CMAKE_SHARED_LIBRARY_SUFFIX}"
 )

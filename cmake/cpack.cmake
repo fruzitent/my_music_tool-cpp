@@ -1,1 +1,2 @@
+include(InstallRequiredSystemLibraries)
 include(CPack)

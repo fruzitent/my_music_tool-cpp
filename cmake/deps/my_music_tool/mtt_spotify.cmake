@@ -6,6 +6,16 @@ set(CPM_PACKAGE_${target}_SOURCE_DIR "${CMAKE_SOURCE_DIR}/out/artifact/${target}
 add_library(${target} SHARED IMPORTED GLOBAL)
 add_library(deps::${target} ALIAS ${target})
 
+if(WIN32)
+    target_link_libraries(
+        ${target}
+        INTERFACE
+            "ntdll"
+            "userenv"
+            "WindowsApp"
+    )
+endif()
+
 target_sources(
     ${target}
     INTERFACE
@@ -17,20 +27,30 @@ target_sources(
 target_sources(${target} INTERFACE "${CPM_PACKAGE_${target}_SOURCE_DIR}/include/my_music_tool/spotify.cpp")
 
 if(BUILD_SHARED_LIBS)
-    set(LIBSPOTIFY_DEBUG "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/debug/libspotify${CMAKE_SHARED_LIBRARY_SUFFIX}")
-    set(LIBSPOTIFY_RELEASE "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/release/libspotify${CMAKE_SHARED_LIBRARY_SUFFIX}")
+    set(TARGET_NAME "${CMAKE_SHARED_LIBRARY_PREFIX}spotify${CMAKE_SHARED_LIBRARY_SUFFIX}")
+    set(TARGET_LOCATION_DEBUG "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/debug/${TARGET_NAME}")
+    set(TARGET_LOCATION_RELEASE "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/release/${TARGET_NAME}")
+    set(TARGET_IMPLIB_DEBUG "${TARGET_LOCATION_DEBUG}${CMAKE_STATIC_LIBRARY_SUFFIX}")
+    set(TARGET_IMPLIB_RELEASE "${TARGET_LOCATION_RELEASE}${CMAKE_STATIC_LIBRARY_SUFFIX}")
 else()
-    set(LIBSPOTIFY_DEBUG "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/debug/libspotify${CMAKE_STATIC_LIBRARY_SUFFIX}")
-    set(LIBSPOTIFY_RELEASE "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/release/libspotify${CMAKE_STATIC_LIBRARY_SUFFIX}")
+    set(TARGET_NAME "${CMAKE_STATIC_LIBRARY_PREFIX}spotify${CMAKE_STATIC_LIBRARY_SUFFIX}")
+    set(TARGET_LOCATION_DEBUG "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/debug/${TARGET_NAME}")
+    set(TARGET_LOCATION_RELEASE "${CPM_PACKAGE_${target}_SOURCE_DIR}/lib/release/${TARGET_NAME}")
+    set(TARGET_IMPLIB_DEBUG "${TARGET_LOCATION_DEBUG}")
+    set(TARGET_IMPLIB_RELEASE "${TARGET_LOCATION_RELEASE}")
 endif()
 
 set_target_properties(
     ${target}
     PROPERTIES
+        IMPORTED_IMPLIB_DEBUG
+            ${TARGET_IMPLIB_DEBUG}
+        IMPORTED_IMPLIB_RELEASE
+            ${TARGET_IMPLIB_RELEASE}
         IMPORTED_LOCATION_DEBUG
-            ${LIBSPOTIFY_DEBUG}
+            ${TARGET_LOCATION_DEBUG}
         IMPORTED_LOCATION_RELEASE
-            ${LIBSPOTIFY_RELEASE}
+            ${TARGET_LOCATION_RELEASE}
         IMPORTED_NO_SONAME
             ON
 )
