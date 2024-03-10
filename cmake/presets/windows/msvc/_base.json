@@ -10,6 +10,10 @@
   ],
   "configurePresets": [
     {
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl"
+      },
       "hidden": true,
       "inherits": ["configure_base-windows"],
       "name": "configure_base-windows-msvc"

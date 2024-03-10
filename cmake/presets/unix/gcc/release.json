@@ -12,9 +12,7 @@
   "configurePresets": [
     {
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++"
+        "CMAKE_BUILD_TYPE": "Release"
       },
       "inherits": ["configure_base-unix-gcc"],
       "name": "unix-gcc-release"

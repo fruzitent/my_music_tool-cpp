@@ -10,6 +10,10 @@
   ],
   "configurePresets": [
     {
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      },
       "hidden": true,
       "inherits": ["configure_base-windows"],
       "name": "configure_base-windows-clang"

@@ -12,9 +12,7 @@
   "configurePresets": [
     {
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_COMPILER": "clang-cl",
-        "CMAKE_CXX_COMPILER": "clang-cl"
+        "CMAKE_BUILD_TYPE": "Debug"
       },
       "inherits": ["configure_base-windows-clang"],
       "name": "windows-clang-debug"
